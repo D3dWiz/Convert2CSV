@@ -7,8 +7,8 @@
     <ProjectGuid>{59C75412-8C1D-4A87-9225-7D27AACC4F18}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExportInCSV</RootNamespace>
-    <AssemblyName>ExportInCSV</AssemblyName>
+    <RootNamespace>Convert2CSV</RootNamespace>
+    <AssemblyName>Convert2CSV</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
