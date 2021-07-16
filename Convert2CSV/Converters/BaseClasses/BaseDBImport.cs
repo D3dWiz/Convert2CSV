@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Convert2CSV.Converters
 {
-    public abstract class BaseDBImport
+    public abstract class BaseDbImport
     {
         #region Declarations
 

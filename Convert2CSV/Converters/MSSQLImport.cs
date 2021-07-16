@@ -4,21 +4,31 @@ using System.Data.SqlClient;
 
 namespace Convert2CSV.Converters
 {
-    public class MSSQLImport : BaseDBImport, IDisposable
+    public class MSSQLImport : BaseDbImport, IDisposable
     {
-        public override DataTable GetDataTable(string connectionString, string selectQuery)
+        #region Constructors
+        public MSSQLImport(string connectionstring)
         {
-            var returnDT = new DataTable();
+
+            ConnectionString = connectionstring;
+
+        }
+        #endregion
+        #region Methods
+        //gets a specific table
+        public override DataTable GetDataTable(string connectionString, string selection)
+        {
+            var data = new DataTable();
 
             var con = new SqlConnection(connectionString);
             try
             {
                 con.Open();
-                var command = new SqlCommand(selectQuery, con);
+                var command = new SqlCommand(selection, con);
 
                 using (var adapter = new SqlDataAdapter(command))
                 {
-                    adapter.Fill(returnDT);
+                    adapter.Fill(data);
                 }
             }
             catch (Exception ex)
@@ -30,7 +40,7 @@ namespace Convert2CSV.Converters
                 if (con.State == ConnectionState.Open)
                     con.Close();
             }
-            return returnDT;
+            return data;
         }
 
         public override void getSchemaTable()
@@ -54,7 +64,7 @@ namespace Convert2CSV.Converters
 
         }
 
-        public override DataTable GetQueryResult(string sqlQuery)
+        public override DataTable GetQueryResult(string dbQuery)
         {
             try
             {
@@ -64,7 +74,7 @@ namespace Convert2CSV.Converters
                     if (con.State != ConnectionState.Open)
                         con.Open();
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, con))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(dbQuery, con))
                     {
 
                         adapter.Fill(SQLTable);
@@ -82,7 +92,7 @@ namespace Convert2CSV.Converters
 
             return SQLTable;
         }
-
+        #endregion
         public void Dispose()
         {
 
