@@ -46,19 +46,19 @@ namespace Convert2CSVDemoApp
             string connectionString = $@"Server={server};Database={database};UID={user};Password={password}";
             string selection = $"select * from {table}";
 
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //{
+            //string sSelectedPath = fbd.SelectedPath;
+            //}
+
+
             using (Convert2CSV.Converters.MSSQLImport mssqlImport = new Convert2CSV.Converters.MSSQLImport(connectionString))
             {
                 using (Convert2CSV.Exporters.DataExport mssqlExport = new Convert2CSV.Exporters.DataExport())
                     try
                     {
-                        FolderBrowserDialog fbd = new FolderBrowserDialog();
-                        fbd.RootFolder = Environment.SpecialFolder.MyDocuments;
-                        if (fbd.ShowDialog() == DialogResult.OK)
-                        {
-                            string sSelectedPath = fbd.SelectedPath;
-                        }
-                        string path = fbd.SelectedPath;
-
+                        //Hardcoded, will change later :)
+                        string path = @"C:\Test.csv";
                         DataTable data = mssqlImport.GetDataTable(connectionString, selection);
                         mssqlExport.Convert2CSV(data, path);
                     }
