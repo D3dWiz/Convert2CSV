@@ -8,26 +8,28 @@ using System.Threading.Tasks;
 
 namespace Convert2CSV.Exporters
 {
-    class DataExport : IDisposable
+    public class DataExport : IDisposable
     {
-        public static void ToCSV(
-        DataTable result, string strFilePath)
+        public void Convert2CSV(DataTable data, string strFilePath)
         {
             StreamWriter sw = new StreamWriter(strFilePath, false);
-    // Header
-            for (int i = 0; i < result.Columns.Count; i++)
+
+#region Header
+            for (int i = 0; i < data.Columns.Count; i++)
             {
-                sw.Write(result.Columns[i]);
-                if (i < result.Columns.Count - 1)
+                sw.Write(data.Columns[i]);
+                if (i < data.Columns.Count - 1)
                 {
                     sw.Write(",");
                 }
             }
             sw.Write(sw.NewLine);
-    // Rows
-            foreach (DataRow dr in result.Rows)
+#endregion
+
+#region Rows
+            foreach (DataRow dr in data.Rows)
             {
-                for (int i = 0; i < result.Columns.Count; i++)
+                for (int i = 0; i < data.Columns.Count; i++)
                 {
                     if (!Convert.IsDBNull(dr[i]))
                     {
@@ -42,7 +44,7 @@ namespace Convert2CSV.Exporters
                             sw.Write(dr[i].ToString());
                         }
                     }
-                    if (i < result.Columns.Count - 1)
+                    if (i < data.Columns.Count - 1)
                     {
                         sw.Write(",");
                     }
@@ -51,6 +53,7 @@ namespace Convert2CSV.Exporters
             }
             sw.Close();
         }
+#endregion
 
         public void Dispose()
         {

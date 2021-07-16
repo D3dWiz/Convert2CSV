@@ -42,6 +42,7 @@ namespace Convert2CSVDemoApp
             this.TableLabel = new System.Windows.Forms.Label();
             this.TableTextBox = new System.Windows.Forms.TextBox();
             this.FetchButton = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -229,6 +230,7 @@ namespace Convert2CSVDemoApp
         private System.Windows.Forms.Label TableLabel;
         private System.Windows.Forms.TextBox TableTextBox;
         private System.Windows.Forms.Button FetchButton;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

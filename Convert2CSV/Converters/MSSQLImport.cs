@@ -15,11 +15,13 @@ namespace Convert2CSV.Converters
         }
         #endregion
         #region Methods
-        //gets a specific table
+        /// <summary>
+        /// Gets a specific table.
+        /// </summary>
         public override DataTable GetDataTable(string connectionString, string selection)
         {
             var data = new DataTable();
-
+            // Connects to the SQL with a connectionString provided by the business layer.
             var con = new SqlConnection(connectionString);
             try
             {
@@ -32,8 +34,8 @@ namespace Convert2CSV.Converters
                 }
             }
             catch (Exception ex)
-            {
-                throw ex;
+            { 
+                // Throwing errors is for the business layer ;)
             }
             finally
             {
@@ -43,6 +45,10 @@ namespace Convert2CSV.Converters
             return data;
         }
 
+        /// <summary>
+        /// Returns schema info.
+        /// </summary>
+        // Untested!
         public override void getSchemaTable()
         {
             try
@@ -52,18 +58,22 @@ namespace Convert2CSV.Converters
 
                     if (con.State != ConnectionState.Open)
                         con.Open();
-
+                    // Leaving it hardcoded with the hope that nobody renames the damn folders.
                     SchemaTable = con.GetSchema("Tables");
 
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Throwing errors is for the business layer ;)
             }
 
         }
 
+        /// <summary>
+        /// Returns only the results from a specific query.
+        /// </summary>
+        // Untested!
         public override DataTable GetQueryResult(string dbQuery)
         {
             try
@@ -87,15 +97,13 @@ namespace Convert2CSV.Converters
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Throwing errors is for the business layer ;)
             }
-
             return SQLTable;
         }
         #endregion
         public void Dispose()
         {
-
         }
     }
 }
