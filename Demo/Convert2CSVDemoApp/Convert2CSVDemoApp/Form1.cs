@@ -6,11 +6,12 @@ namespace Convert2CSVDemoApp
 {
     public partial class Body : Form
     {
-
         public Body()
         {
             InitializeComponent();
         }
+
+        #region FetchButton
         private void FetchButton_Click(object sender, EventArgs e)
         {
             string server = ServerTextBox.Text;
@@ -35,6 +36,9 @@ namespace Convert2CSVDemoApp
                 }
             }
         }
+        #endregion
+
+        #region ConvertButton
         private void ConvertButton_Click(object sender, EventArgs e)
         {
             string server = ServerTextBox.Text;
@@ -58,7 +62,7 @@ namespace Convert2CSVDemoApp
                     try
                     {
                         //Hardcoded, will change later :)
-                        string path = @"C:\Test.csv";
+                        string path = @"F:\Test.csv";
                         DataTable data = mssqlImport.GetDataTable(connectionString, selection);
                         mssqlExport.Convert2CSV(data, path);
                     }
@@ -68,5 +72,6 @@ namespace Convert2CSVDemoApp
                     }
             }
         }
+        #endregion
     }
 }
